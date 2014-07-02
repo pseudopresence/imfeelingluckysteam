@@ -19,7 +19,7 @@ namespace SteamImFeelingLucky {
           // Open the config file 
           {
             string configPath = steamInstallDir + @"\config\config.vdf";
-            Console.WriteLine("Opening " + configPath);
+            // Console.WriteLine("Opening " + configPath);
             StreamReader reader = new StreamReader(new FileStream(configPath, FileMode.Open));
             parseConfig(reader, steamAppsPaths);
           }
@@ -36,20 +36,20 @@ namespace SteamImFeelingLucky {
             string[] manifests = Directory.GetFiles(path, "appmanifest_*.acf");
             foreach (string filename in manifests)
             {
-              Console.WriteLine("Opening " + filename);
+              // Console.WriteLine("Opening " + filename);
               StreamReader reader = new StreamReader(new FileStream(filename, FileMode.Open));
               parseManifest(reader, ids);
             }
           }
 
-          Console.Write(ids.Count + " games found");
+          Console.WriteLine(ids.Count + " games found");
           Random gen = new Random();
           int chosen = gen.Next(ids.Count);
 
-          Console.WriteLine("steam://run/" + ids[chosen]);
+          Console.WriteLine("running steam://run/" + ids[chosen]);
           System.Diagnostics.Process.Start("steam://run/" + ids[chosen]);
 
-          Console.WriteLine("Exiting!");
+          Console.WriteLine("All done!");
         }
       
         static void parseManifest(StreamReader reader, List<string> o_ids)
@@ -75,7 +75,7 @@ namespace SteamImFeelingLucky {
           }
           if (isInstalled && id != null)
           {
-            Console.WriteLine("Found installed game id " + id);
+            // Console.WriteLine("Found installed game id " + id);
             o_ids.Add(id);
           }
         }
