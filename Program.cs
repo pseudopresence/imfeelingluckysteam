@@ -77,13 +77,17 @@ namespace SteamImFeelingLucky {
             }
 
             if (ids.Count > 0) {
+                Console.Write(ids.Count + " games found");
                 Random gen = new Random();
                 int chosen = gen.Next(ids.Count);
 
+                Console.Write("steam://run/" + ids[chosen]);
                 System.Diagnostics.Process.Start("steam://run/" + ids[chosen]);
             }
-
-            Console.Write("");
+            else
+            {
+                Console.Write("No games found!");
+            }
         }
 
         static string ProgramFilesx86() {
